@@ -10,15 +10,10 @@ const {
 const { doHash, doHashValidation, hmacProcess } = require("../utils/hashing");
 const transport = require("../middlewares/sendMail");
 
-// PostgreSQL Explanation:
-// Unlike MongoDB which is document-based, PostgreSQL is relational
-// Sequelize is an ORM that lets us work with PostgreSQL using JavaScript objects
-
 exports.signup = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Validation remains the same (Joi validation)
     const { error, value } = signupSchema.validate({ email, password });
     if (error) {
       return res.status(400).json({
@@ -47,9 +42,6 @@ exports.signup = async (req, res) => {
       password: hashedPassword,
     });
 
-    // PostgreSQL Explanation:
-    // The created user is now a Sequelize model instance
-    // Default scope automatically excludes password field
     res.status(201).json({
       success: true,
       message: "Your account has been created successfully",
