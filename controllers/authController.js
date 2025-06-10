@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { User } = require("./models"); // Sequelize model import
+const { User } = require("../models/usersMODEL"); // Sequelize model import
 const {
   signupSchema,
   signinSchema,
